@@ -31,7 +31,7 @@ A manera general queremos:
 * Un espacio antes del paréntesis de apertura en las sentencias de control (```if```, ```while```, etc.).
 * Bloques de muchas líneas con ```if``` y ```else```, poner el ```else``` en la misma línea que el ```if```.
 * No espacio entre el keyword function o el nombrede la funcion y el primer parentesis (`function() {}`)
-* Separar a los operadores con espacios. `var x = y + 5;`
+* Separar a los operadores con espacios. `let x = y + 5;`
 * Deja una línea en blanco luego de los bloques y antes de la siguiente sentencia.
 * Ser descriptivo con nombres de variables, m&eacute;todos, funciones, etc.
 * camelCase para nombrar objetos, funciones e instancias, ejem: `thisIsMyObject`, `thisIsMyFunction`
@@ -45,14 +45,14 @@ A manera general queremos:
 
     ```javascript
     // mal
-    var story = [
+    let story = [
         once
       , upon
       , aTime
     ];
 
     // bien
-    var story = [
+    let story = [
       once,
       upon,
       aTime
@@ -64,20 +64,20 @@ A manera general queremos:
     ```javascript
     // mal
     (function() {
-      var name = 'Skywalker'
+      let name = 'Skywalker'
       return name
     })()
 
     // bien
     (function() {
-      var name = 'Skywalker';
+      let name = 'Skywalker';
       return name;
     })();
 
     // super bien (evita que la funcion se vuelva un argumento
     // cuando dos archivos con IIFEs sean concatenados)
     ;(function() {
-      var name = 'Skywalker';
+      let name = 'Skywalker';
       return name;
     })();
     ```
@@ -87,7 +87,7 @@ A manera general queremos:
   - Usa Array#push, en vez de asignación directa, para agregar elementos a un arreglo.
 
     ```javascript
-    var someStack = [];
+    let someStack = [];
 
     // mal
     someStack[someStack.length] = 'abracadabra';
@@ -99,9 +99,9 @@ A manera general queremos:
   - Cuando necesites copiar un arreglo usa Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
 
     ```javascript
-    var len = items.length;
-    var itemsCopy = [];
-    var i;
+    let len = items.length;
+    let itemsCopy = [];
+    let i;
 
     // mal
     for (i = 0; i < len; i++) {
@@ -118,16 +118,16 @@ A manera general queremos:
 
     ```javascript
     // mal
-    var name = "Bob Parr";
+    let name = "Bob Parr";
 
     // bien
-    var name = 'Bob Parr';
+    let name = 'Bob Parr';
 
     // mal
-    var fullName = "Bob " + this.lastName;
+    let fullName = "Bob " + this.lastName;
 
     // bien
-    var fullName = 'Bob ' + this.lastName;
+    let fullName = 'Bob ' + this.lastName;
     ```
 
 ## <a name='functions'>Funciones</a>
@@ -136,12 +136,12 @@ A manera general queremos:
 
     ```javascript
     // expresion de funcion anonima
-    var anonymous = function() {
+    let anonymous = function() {
       return true;
     };
 
     // expresion de funcion nombrada
-    var named = function named() {
+    let named = function named() {
       return true;
     };
 
@@ -162,16 +162,16 @@ A manera general queremos:
   - Usa la notación de punto `.` cuando accedas a las propiedades.
 
     ```javascript
-    var luke = {
+    let luke = {
       jedi: true,
       age: 28
     };
 
     // mal
-    var isJedi = luke['jedi'];
+    let isJedi = luke['jedi'];
 
     // bien
-    var isJedi = luke.jedi;
+    let isJedi = luke.jedi;
     ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
@@ -179,24 +179,22 @@ A manera general queremos:
 
 ## <a name='variables'>Variables</a>
 
-  - Siempre usar `var` para declarar variables. No hacerlo resultará en variables globales. Debemos evitar contaminar el espacio global (global namespace).
-
-  - Usar una declaración `var` por variable.
+  - Usar una declaración `let` por variable.
 
     ```javascript
-    var items = getItems();
-    var goSportsTeam = true;
-    var dragonball = 'z';
+    let items = getItems();
+    let goSportsTeam = true;
+    let dragonball = 'z';
     ```
 
   - Declarar a las variables sin asignación al final. Esto es útil cuando necesites asignar una variable luego dependiendo de una de las variables asignadas previamente.
 
     ```javascript
-    var items = getItems();
-    var goSportsTeam = true;
-    var dragonball;
-    var length;
-    var i;
+    let items = getItems();
+    let goSportsTeam = true;
+    let dragonball;
+    let length;
+    let i;
     ```
 
   - Asigna las variables al inicio de su ámbito. Esto ayuda a evitar inconvenientes con la declaración de variables y temas relacionados a 'hoisting'.
@@ -209,7 +207,7 @@ A manera general queremos:
 
       //..otras cosas..
 
-      var name = getName();
+      let name = getName();
 
       if (name === 'test') {
         return false;
@@ -220,7 +218,7 @@ A manera general queremos:
 
     // bien
     function() {
-      var name = getName();
+      let name = getName();
 
       test();
       console.log('doing stuff..');
@@ -236,7 +234,7 @@ A manera general queremos:
 
     // mal - llamada a funcion innecesaria
     function() {
-      var name = getName();
+      let name = getName();
 
       if (!arguments.length) {
         return false;
@@ -253,7 +251,7 @@ A manera general queremos:
         return false;
       }
 
-      var name = getName();
+      let name = getName();
       this.setFirstName(name);
 
       return true;
@@ -335,7 +333,7 @@ A manera general queremos:
       console.log('fetching type...');
 
       // set the default type to 'no type'
-      var type = this._type || 'no type';
+      let type = this._type || 'no type';
 
       return type;
     }
@@ -353,55 +351,55 @@ A manera general queremos:
     //  => this.reviewScore = 9;
 
     // mal
-    var totalScore = this.reviewScore + '';
+    let totalScore = this.reviewScore + '';
 
     // bien
-    var totalScore = '' + this.reviewScore;
+    let totalScore = '' + this.reviewScore;
 
     // mal
-    var totalScore = '' + this.reviewScore + ' total score';
+    let totalScore = '' + this.reviewScore + ' total score';
 
     // bien
-    var totalScore = this.reviewScore + ' total score';
+    let totalScore = this.reviewScore + ' total score';
     ```
 
   - Usa `parseInt` para números y siempre con la base numérica para el casting de tipo.
 
     ```javascript
-    var inputValue = '4';
+    let inputValue = '4';
 
     // mal
-    var val = new Number(inputValue);
+    let val = new Number(inputValue);
 
     // mal
-    var val = +inputValue;
+    let val = +inputValue;
 
     // mal
-    var val = inputValue >> 0;
+    let val = inputValue >> 0;
 
     // mal
-    var val = parseInt(inputValue);
+    let val = parseInt(inputValue);
 
     // bien
-    var val = Number(inputValue);
+    let val = Number(inputValue);
 
     // bien
-    var val = parseInt(inputValue, 10);
+    let val = parseInt(inputValue, 10);
     ```
 
   - Booleans:
 
     ```javascript
-    var age = 0;
+    let age = 0;
 
     // mal
-    var hasAge = new Boolean(age);
+    let hasAge = new Boolean(age);
 
     // bien
-    var hasAge = Boolean(age);
+    let hasAge = Boolean(age);
 
     // bien
-    var hasAge = !!age;
+    let hasAge = !!age;
     ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
