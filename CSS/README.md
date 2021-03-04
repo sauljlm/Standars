@@ -14,6 +14,7 @@ Para reducir al m&iacute;nimo la fricci&oacute;n de nuestro CSS, el equipo ha ll
 * [Uso de whitespace](#uso-de-whitespace)
 * [Comentarios](#comentarios)
 * [Performance](#performance)
+* [Variables](#variables)
 * [Lectura adicional](#lectura-adicional)
 
 ## Sintaxis y formato
@@ -356,7 +357,33 @@ Debido a que, los comentarios se eliminan de las hojas de estilo compiladas, no 
 * Pero evite utilziar shorthand cuando es innecesario, `margin-bottom: 20px;` en lugar de `margin: 0 0 20px;`
 * Use shorthand para valores hex cuando sea posible, ejemplo, `#fff` en lugar de `#ffffff`
 
-## Lectura adicional
+## variables
+
+Uso de variables para valores utilizados constantemente
+
+```css
+// Declaracion de variable
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+}
+
+// Uso de la variable
+.container {
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 15px;
+}
+
+button {
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 5px;
+}
+```
+
+## lectura-adicional
 
 * [CSS Style Guides - CSS-Tricks ](https://css-tricks.com/css-style-guides/)
 * [Writing efficient CSS - MDN ](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Writing_efficient_CSS)
