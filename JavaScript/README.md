@@ -13,11 +13,7 @@ JavaScript Coding Standards
   1. [Hoisting](#hoisting)
   1. [Expresiones de comparación e igualdad](#conditionals)
   1. [Comentarios](#comments)
-  1. [Casting de Tipos & Coerción](#type-coercion)
   1. [Funciones de Acceso](#accessors)
-  1. [Constructores](#constructors)
-  1. [Eventos](#events)
-  1. [Módulos](#modules)
   1. [Recursos](#resources)
 
 
@@ -57,29 +53,6 @@ A manera general queremos:
       upon,
       aTime
     ];
-    ```
-
-  - **Sip.**
-
-    ```javascript
-    // mal
-    (function() {
-      let name = 'Skywalker'
-      return name
-    })()
-
-    // bien
-    (function() {
-      let name = 'Skywalker';
-      return name;
-    })();
-
-    // super bien (evita que la funcion se vuelva un argumento
-    // cuando dos archivos con IIFEs sean concatenados)
-    ;(function() {
-      let name = 'Skywalker';
-      return name;
-    })();
     ```
 
 ## <a name='arrays'>Arreglos</a>
@@ -135,13 +108,9 @@ A manera general queremos:
   - Expresiones de función:
 
     ```javascript
-    // expresion de funcion anonima
-    let anonymous = function() {
-      return true;
-    };
 
     // expresion de funcion nombrada
-    let named = function named() {
+    let named = () => {
       return true;
     };
 
@@ -308,7 +277,7 @@ A manera general queremos:
 
 ## <a name='comments'>Comentarios</a>
 
-  - Usa `/** ... */` para comentarios de múltiples líneas. Incluye una descripción, especificación de tipos y valores para todos los parámetros y valores de retorno.
+  - Usa `/** ... */` para comentarios de múltiples líneas.
 
     ```javascript
     /**
@@ -342,69 +311,6 @@ A manera general queremos:
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
 
-## <a name='type-coercion'>Casting de Tipos & Coerción</a>
-
-  - Ejecuta coerción al inicio de una sentencia.
-  - Strings:
-
-    ```javascript
-    //  => this.reviewScore = 9;
-
-    // mal
-    let totalScore = this.reviewScore + '';
-
-    // bien
-    let totalScore = '' + this.reviewScore;
-
-    // mal
-    let totalScore = '' + this.reviewScore + ' total score';
-
-    // bien
-    let totalScore = this.reviewScore + ' total score';
-    ```
-
-  - Usa `parseInt` para números y siempre con la base numérica para el casting de tipo.
-
-    ```javascript
-    let inputValue = '4';
-
-    // mal
-    let val = new Number(inputValue);
-
-    // mal
-    let val = +inputValue;
-
-    // mal
-    let val = inputValue >> 0;
-
-    // mal
-    let val = parseInt(inputValue);
-
-    // bien
-    let val = Number(inputValue);
-
-    // bien
-    let val = parseInt(inputValue, 10);
-    ```
-
-  - Booleans:
-
-    ```javascript
-    let age = 0;
-
-    // mal
-    let hasAge = new Boolean(age);
-
-    // bien
-    let hasAge = Boolean(age);
-
-    // bien
-    let hasAge = !!age;
-    ```
-
-    **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
-
-
 ## <a name='accessors'>Funciones de Acceso</a>
 
   - Funciones de acceso para las propiedades no son requeridas, pero s&iacute; se crean, usar  ```getVal()``` y ```setVal('hello')```. Ejem: `getAge()`, `setAge(25)`.
@@ -413,36 +319,6 @@ A manera general queremos:
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
-
-## <a name='events'>Eventos</a>
-
-  - Cuando envíes paquetes de datos a los eventos (ya sea con eventos del DOM o algo propietario como los eventos de Backbone), pasa un mapa en vez de un valor directo. Esto permitirá a un próximo colaborador a agregar más datos al paquete de datos sin que tenga que encontrar o actualizar un handler para cada evento. Por ejemplo, en vez de:
-
-    ```js
-    // mal
-    $(this).trigger('listingUpdated', listing.id);
-
-    ...
-
-    $(this).on('listingUpdated', function(e, listingId) {
-      // hacer algo con listingId
-    });
-    ```
-
-    prefiere:
-
-    ```js
-    // bien
-    $(this).trigger('listingUpdated', { listingId : listing.id });
-
-    ...
-
-    $(this).on('listingUpdated', function(e, data) {
-      // hacer algo con data.listingId
-    });
-    ```
-
-  **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
 ## <a name='recursos'>Recursos</a>
   

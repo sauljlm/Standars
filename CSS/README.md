@@ -159,6 +159,7 @@ ul {
 ```
 
 **Propiedades:**
+
 ```css
 // Mal
 selector {
@@ -195,94 +196,6 @@ selector {
 
 .product-list-thumb {
 
-}
-```
-
-## Media Queries
-Cuando tenemos media queries, en la medida de lo posible, los anidamos dentro del selector relacionado, y debe ir antes que cualquier bloque de reglas anidado, usamos una nueva l&iacute;nea antes y despu&eacute;s del media querie.
-
-```css
-// Mal
-.selector {
-    font-family: Arial, sans-serif;
-
-    .nested-selector {
-        color: red;
-    }
-    .nested-selector {
-        width: 50%;
-    }
-    @media (min-width: 768px) {
-        font-size: 20px;
-    }
-}
-
-// Bien
-.selector {
-    font-family: Arial, sans-serif;
-
-    @media (min-width: 768px) {
-        font-size: 20px;
-    }
-
-    .nested-selector {
-        color: red;
-    }
-    .nested-selector {
-        width: 50%;
-    }
-}
-```
-
-Si el selector padre no tiene declaraciones, el media querie siempre va antes que las reglas anidadas.
-
-```css
-// Mal
-.selector {
-    .nested-selector {
-        color: red;
-    }
-
-    @media (min-width: 768px) {
-        font-size: 20px;
-    }
-}
-
-// Bien
-.selector {
-    @media (min-width: 768px) {
-        font-size: 20px;
-    }
-
-    .nested-selector {
-        color: red;
-    }
-}
-```
-
-## Parent selector
-Ordenamos parent selectos (inicia con &, tales como &.classname &oacute; &:hover) antes que otros selectores anidados.
-
-```css
-// Mal
-.selector {
-    a { 
-        ... 
-    }
-    &:hover { 
-        ... 
-    }
-}
-
-// Bien
-.selector {
-    &:hover { 
-        ... 
-    }
-
-    a { 
-        ... 
-    }
 }
 ```
 
